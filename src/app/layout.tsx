@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Serif, Host_Grotesk } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider"
 
 const hostGrotesk = Host_Grotesk({
   variable: "--font-host-grotesk",
@@ -30,11 +31,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${hostGrotesk.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
-        {children}
+         <ThemeProvider
+            attribute="class"
+            defaultTheme="root"
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
       </body>
     </html>
   );
