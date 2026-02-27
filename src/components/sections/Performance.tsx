@@ -17,35 +17,35 @@ export default function Performance() {
                 <div className="grid grid-cols-1 lg:grid-cols-12 items-center gap-y-16">
 
                     {/* Left Headline */}
-                    <div className="lg:col-span-5 xl:col-span-5 lg:pr-12 xl:pr-20">
-                        <h2 className="font-sans text-5xl sm:text-6xl md:text-7xl xl:text-[5.5rem] font-bold uppercase tracking-tighter text-foreground leading-[0.9] text-balance">
-                            Platforms <br className="hidden lg:block" />& Performance
+                    <div className="lg:col-span-4 xl:col-span-5 lg:pr-10 xl:pr-16 z-10">
+                        <h2 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-[5.5rem] font-bold uppercase tracking-tighter text-foreground leading-[0.9]">
+                            Platforms <br className="hidden lg:block xl:block" />& Stats
                         </h2>
                         <p className="font-serif mt-8 text-lg md:text-xl text-muted-foreground leading-relaxed max-w-md">
                             A breakdown of reach, engagement, and audience alignment across key social channels. From long-form written storytelling to story-driven video content, my platforms foster deep connection and consistent discovery.
                         </p>
-                        <div className="mt-10">
-                            <a href="mailto:contact@example.com" className="inline-flex items-center gap-4 bg-[#1a1a1a] text-white dark:bg-foreground dark:text-background px-6 py-3 rounded-[2rem] font-sans text-sm font-bold uppercase tracking-wider hover:opacity-90 transition-opacity">
-                                Contact Me
-                                <div className="bg-white text-black dark:bg-background dark:text-foreground rounded-full p-1">
-                                    <ArrowRight className="w-4 h-4" />
+                        <div className="mt-8 md:mt-10">
+                            <a href="mailto:hello@abiemaxey.com" className="inline-flex items-center gap-4 bg-primary text-primary-foreground rounded-full pl-6 pr-1.5 py-1.5 hover:bg-primary/90 transition-all hover:scale-105 group">
+                                <span className="font-sans uppercase tracking-widest font-bold text-xs sm:text-sm">Let's Work Together</span>
+                                <div className="w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-transform">
+                                    <ArrowRight size={16} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
                                 </div>
                             </a>
                         </div>
                     </div>
 
                     {/* Right Content Grid */}
-                    <div className="lg:col-span-7 xl:col-span-7 w-full lg:border-l border-border/80">
+                    <div className="lg:col-span-8 xl:col-span-7 w-full lg:border-l border-border/80 lg:pl-4">
                         <div className="grid grid-cols-2 w-full">
                             {stats.map((stat, index) => (
                                 <div
                                     key={index}
-                                    className={`flex flex-col justify-center py-12 lg:py-16 px-6 sm:px-10 lg:px-16 xl:px-20 border-border/80
+                                    className={`flex flex-col justify-center py-10 sm:py-12 lg:py-16 px-4 sm:px-8 lg:px-12 xl:px-20 border-border/80
                                     ${index % 2 === 0 ? 'border-r' : ''} 
                                     ${index < stats.length - 2 ? 'border-b' : ''}
                                     `}
                                 >
-                                    <h3 className="font-sans text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tighter text-foreground mb-3 pb-1">
+                                    <h3 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-bold tracking-tighter text-foreground mb-2 pb-1 truncate sm:overflow-visible">
                                         {stat.value}
                                     </h3>
                                     <p className="font-serif text-base lg:text-lg text-muted-foreground">

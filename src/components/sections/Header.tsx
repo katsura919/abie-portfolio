@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
 import { cn } from '@/lib/utils';
@@ -28,14 +29,13 @@ export default function Header() {
 
                 {/* Logo - Always Left */}
                 <div className="flex items-center gap-3 tracking-widest text-lg md:text-base font-bold uppercase pointer-events-auto">
-                    <div className="hidden md:block w-4 h-4 bg-foreground rounded-full"></div>
-                    Abie Maxey
+                    <Image src="/logo.png" alt="Abie Maxey Logo" width={150} height={50} className="w-auto h-8 md:h-10 object-contain dark:invert" priority />
                 </div>
 
                 {/* Right Actions */}
                 <div className="flex items-center gap-3 md:gap-4 pointer-events-auto">
-                    <AnimatedThemeToggler className="flex items-center justify-center p-2 md:p-3 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/80 transition-all hover:scale-105" />
-                    <button className="flex items-center gap-2 md:gap-3 bg-secondary text-secondary-foreground rounded-full px-5 py-2.5 md:px-6 md:py-3 hover:bg-secondary/80 transition-all hover:scale-105">
+                    <AnimatedThemeToggler className="flex items-center justify-center p-2 md:p-3 rounded-full  text-secondary-foreground hover:bg-secondary/80 transition-all hover:scale-105 cursor-pointer" />
+                    <button className="flex items-center gap-2 md:gap-3  text-secondary-foreground rounded-full px-5 py-2.5 md:px-6 md:py-3 hover:bg-secondary/80 transition-all hover:scale-105 cursor-pointer">
                         <span className="font-sans uppercase tracking-widest font-semibold text-xs">Menu</span>
                         <Menu size={16} />
                     </button>

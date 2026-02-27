@@ -20,7 +20,7 @@ export default function About() {
                             <div className="w-full h-[1px] bg-border/80"></div>
 
                             {/* Item 1 */}
-                            <div className="py-8 md:py-10 group cursor-default">
+                            <div className="py-3 group cursor-default">
                                 <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-tighter text-foreground mb-3">
                                     Storytelling
                                 </h3>
@@ -32,7 +32,7 @@ export default function About() {
                             <div className="w-full h-[1px] bg-border/80"></div>
 
                             {/* Item 2 */}
-                            <div className="py-8 md:py-10 group cursor-default">
+                            <div className="py-3  group cursor-default">
                                 <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-tighter text-foreground mb-3">
                                     Practical Insight
                                 </h3>
@@ -44,7 +44,7 @@ export default function About() {
                             <div className="w-full h-[1px] bg-border/80"></div>
 
                             {/* Item 3 */}
-                            <div className="py-8 md:py-10 group cursor-default">
+                            <div className="py-3 group cursor-default">
                                 <h3 className="font-sans text-2xl md:text-3xl font-bold uppercase tracking-tighter text-foreground mb-3">
                                     Aesthetic Realism
                                 </h3>
@@ -63,7 +63,7 @@ export default function About() {
                         <div className="lg:sticky lg:top-32 w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] lg:h-[80vh] max-h-[850px] ml-auto">
                             <div className="w-full h-full rounded-2xl md:rounded-[32px] overflow-hidden bg-muted">
                                 <img
-                                    src="/hero-image.jpg"
+                                    src="/assets/about.jpg"
                                     alt="Abie Maxey"
                                     className="w-full h-full object-cover object-center scale-105 transition-transform duration-700 hover:scale-100"
                                     referrerPolicy="no-referrer"

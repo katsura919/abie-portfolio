@@ -3,7 +3,7 @@ import { ArrowRight } from 'lucide-react';
 export default function Hero() {
     return (
         <>
-            <div className="relative flex flex-col md:flex-row min-h-[100dvh] max-w-[2200px] mx-auto w-full pt-16 md:pt-0">
+            <div className="relative flex flex-col md:flex-row min-h-[100dvh] max-w-[2200px] mx-auto w-full pt-0">
 
                 {/* Center Image - Flow normally on mobile, absolute on desktop */}
                 <div className="md:absolute md:top-0 md:left-1/2 md:-translate-x-1/2 w-full px-8 sm:px-0 sm:w-[80%] md:w-[40vw] lg:w-[32vw] max-w-[600px] aspect-[4/5] md:aspect-auto md:h-[85vh] z-0 order-1 md:order-none md:mt-0 mx-auto">
