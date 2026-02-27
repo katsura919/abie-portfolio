@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist_Mono, Instrument_Serif, Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
+import { SmoothScrolling } from "@/components/SmoothScrolling";
 
 const hostGrotesk = Host_Grotesk({
   variable: "--font-host-grotesk",
@@ -35,14 +36,16 @@ export default function RootLayout({
       <body
         className={`${hostGrotesk.variable} ${geistMono.variable} ${instrumentSerif.variable} antialiased`}
       >
-         <ThemeProvider
-            attribute="class"
-            defaultTheme="root"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="root"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SmoothScrolling>
             {children}
-          </ThemeProvider>
+          </SmoothScrolling>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -7,24 +7,16 @@ import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
 import { cn } from '@/lib/utils';
 
 export default function Header() {
-    const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     return (
         <header className={cn(
             "fixed top-0 left-0 right-0 z-[100] transition-all duration-300 ease-in-out pointer-events-none lg:px-30 md:px-10 px-5",
-            scrolled ? "bg-background shadow-none pointer-events-auto" : "bg-transparent"
+          
         )}>
             <div className={cn(
                 "max-w-[2200px] mx-auto w-full flex items-center justify-between transition-all duration-300 px-8 md:px-16 lg:px-24 xl:px-32",
-                scrolled ? "py-3 md:py-3" : "py-3 md:py-3"
+               
             )}>
 
                 {/* Logo - Always Left */}

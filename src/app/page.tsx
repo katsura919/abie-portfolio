@@ -5,11 +5,13 @@ import Performance from "@/components/sections/Performance";
 
 export default function Home() {
   return (
-    <div className="relative min-h-[100dvh] bg-background text-foreground selection:bg-primary selection:text-primary-foreground overflow-x-hidden font-sans lg:px-30 md:px-10 px-5">
+    <div className="relative min-h-[100dvh] bg-background text-foreground selection:bg-primary selection:text-primary-foreground font-sans">
       <Header />
-      <Hero />
-      <About />
-      <Performance />
+      <div className="w-full relative">
+        <Hero />
+        <About />
+        <Performance />
+      </div>
     </div>
   );
 }

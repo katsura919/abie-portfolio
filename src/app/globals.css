@@ -49,7 +49,7 @@
 }
 
 :root {
-    --radius: 0.625rem;
+  --radius: 0.625rem;
   --font-heading: "Avenir", "Avenir Next", system-ui, sans-serif;
   --font-body: "Avenir", "Avenir Next", system-ui, sans-serif;
   --font-script: var(--font-script);
@@ -122,4 +122,12 @@
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+}
+
+.shadow-top {
+  box-shadow: 0 -15px 30px -15px rgba(0, 0, 0, 0.3);
+}
+
+.dark .shadow-top {
+  box-shadow: 0 -15px 30px -15px rgba(255, 255, 255, 0.05);
 }
