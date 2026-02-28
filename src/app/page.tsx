@@ -3,6 +3,8 @@ import Header from "@/components/sections/Header";
 import About from "@/components/sections/About";
 import Performance from "@/components/sections/Performance";
 import Services from "@/components/sections/Services";
+import Portfolio from "@/components/sections/Portfolio";
+import DraggableSection from "@/components/sections/DraggableSection";
 
 export default function Home() {
   return (
@@ -13,6 +15,8 @@ export default function Home() {
         <About />
         <Performance />
         <Services />
+        <Portfolio />
+        <DraggableSection />
       </div>
     </div>
   );
