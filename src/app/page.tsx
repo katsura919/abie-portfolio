@@ -1,4 +1,5 @@
 import Hero from "@/components/sections/Hero";
+import Footer from "@/components/sections/Footer";
 import Header from "@/components/sections/Header";
 import About from "@/components/sections/About";
 import Performance from "@/components/sections/Performance";
@@ -21,6 +22,7 @@ export default function Home() {
         <Portfolio />
         <Pricing />
         <ExecutiveImpactSection />
+        <Footer />
       </div>
     </div>
   );
