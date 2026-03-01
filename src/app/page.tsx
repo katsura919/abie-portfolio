@@ -5,6 +5,7 @@ import Performance from "@/components/sections/Performance";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
 import DraggableSection from "@/components/sections/DraggableSection";
+import ExecutiveImpactSection from "@/components/sections/ProductsCarousel";
 
 export default function Home() {
   return (
@@ -13,10 +14,11 @@ export default function Home() {
       <div className="w-full relative">
         <Hero />
         <About />
-                <DraggableSection />
+        <DraggableSection />
         <Performance />
         <Services />
         <Portfolio />
+        <ExecutiveImpactSection />
       </div>
     </div>
   );
