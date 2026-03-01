@@ -112,65 +112,65 @@ export default function Services() {
                     </div>
 
                     {/* Left Split - Creator */}
-                    <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-16 border-b md:border-b-0 md:border-r border-border/20 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('creator')}>
-                        <Video className="w-16 h-16 md:w-24 md:h-24 text-primary mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
-                        <h3 className="font-sans text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-center">UGC &<br />Storytelling</h3>
-                        <p className="font-serif italic text-muted-foreground text-center text-xl md:text-2xl">I need authentic content that converts.</p>
+                    <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-16 border-b md:border-b-0 md:border-r border-border/20 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('creator')}>
+                        <Video className="w-12 h-12 md:w-24 md:h-24 text-primary mb-4 md:mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
+                        <h3 className="font-sans text-3xl md:text-6xl font-bold uppercase tracking-tight mb-2 md:mb-4 text-center">UGC &<br />Storytelling</h3>
+                        <p className="font-serif italic text-muted-foreground text-center text-lg md:text-2xl">I need authentic content that converts.</p>
                     </div>
 
                     {/* Right Split - Engineer */}
-                    <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-8 md:p-16 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('engineer')}>
-                        <Settings className="w-16 h-16 md:w-24 md:h-24 text-primary mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
-                        <h3 className="font-sans text-4xl md:text-6xl font-bold uppercase tracking-tight mb-4 text-center">Systems &<br />RevOps</h3>
-                        <p className="font-serif italic text-muted-foreground text-center text-xl md:text-2xl">I need scalable revenue architecture.</p>
+                    <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-16 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('engineer')}>
+                        <Settings className="w-12 h-12 md:w-24 md:h-24 text-primary mb-4 md:mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
+                        <h3 className="font-sans text-3xl md:text-6xl font-bold uppercase tracking-tight mb-2 md:mb-4 text-center">Systems &<br />RevOps</h3>
+                        <p className="font-serif italic text-muted-foreground text-center text-lg md:text-2xl">I need scalable revenue architecture.</p>
                     </div>
                 </div>
 
                 {/* Panel 2 (Creator): What I Create */}
-                <div className="w-screen h-full flex flex-col justify-center p-8 md:p-24 relative overflow-hidden bg-secondary border-l border-border/50">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 relative overflow-hidden bg-secondary border-l border-border/50">
+                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <span className="font-serif italic text-xl md:text-2xl text-muted-foreground mb-4 block">Path A</span>
-                            <h2 className="font-sans text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-8 break-words">
+                            <span className="font-serif italic text-lg md:text-2xl text-muted-foreground mb-2 md:mb-4 block">Path A</span>
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
                                 Content<br />Creation
                             </h2>
-                            <p className="font-sans font-bold text-2xl md:text-3xl text-primary leading-snug mb-6">
+                            <p className="font-sans font-bold text-xl md:text-3xl text-primary leading-snug mb-4 md:mb-6">
                                 1.7M+ Threads Reach | 800k+ IG Reach
                             </p>
-                            <p className="font-serif italic text-xl md:text-2xl text-muted-foreground leading-snug max-w-lg">
+                            <p className="font-serif italic text-lg md:text-2xl text-muted-foreground leading-snug max-w-lg">
                                 In a sea of over-polished, fake-feeling ads, my content builds credibility through aesthetic realism.
                             </p>
                         </div>
-                        <div className="border-l border-border/50 pl-8 md:pl-16">
-                            <ul className="space-y-8 font-sans text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
-                                <li className="flex items-center gap-6"><Video className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>UGC-style vertical videos</span></li>
-                                <li className="flex items-center gap-6"><Mic className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Voiceover storytelling</span></li>
-                                <li className="flex items-center gap-6"><Clapperboard className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Aesthetic B-roll + talking head</span></li>
-                                <li className="flex items-center gap-6"><PenTool className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Scripted & semi-scripted content</span></li>
-                                <li className="flex items-center gap-6"><Smartphone className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Native-feeling conversion ads</span></li>
+                        <div className="border-l border-border/50 pl-6 md:pl-16">
+                            <ul className="space-y-4 md:space-y-8 font-sans text-lg md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
+                                <li className="flex items-center gap-4 md:gap-6"><Video className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>UGC-style vertical videos</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><Mic className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Voiceover storytelling</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><Clapperboard className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Aesthetic B-roll + talking head</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><PenTool className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Scripted & semi-scripted content</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><Smartphone className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Native-feeling conversion ads</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 {/* Panel 3 (Creator): Content Pillars & Brands */}
-                <div className="w-screen h-full flex flex-col justify-center p-8 md:p-24 relative overflow-hidden bg-secondary">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 relative overflow-hidden bg-secondary">
+                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <h2 className="font-sans text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-8 break-words">
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
                                 Nomadic<br />Narratives
                             </h2>
-                            <p className="font-serif italic text-2xl md:text-3xl text-muted-foreground leading-snug">
+                            <p className="font-serif italic text-lg md:text-3xl text-muted-foreground leading-snug">
                                 Documenting the actual reality of rebuilding lives across borders.
                             </p>
                         </div>
-                        <div className="flex flex-col gap-12 justify-center h-full border-l border-border/50 pl-8 md:pl-16">
+                        <div className="flex flex-col gap-8 md:gap-12 justify-center h-full border-l border-border/50 pl-6 md:pl-16">
                             <div>
-                                <p className="font-sans font-bold uppercase tracking-widest text-lg mb-6 text-foreground/70">Content Pillars:</p>
-                                <ul className="space-y-6 font-sans text-xl md:text-2xl font-bold tracking-tight text-foreground">
-                                    <li className="flex items-start gap-4"><ArrowRight className="w-6 h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Visa processes, living abroad solo, legal realties.</span></li>
-                                    <li className="flex items-start gap-4"><ArrowRight className="w-6 h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Digital infrastructure and remote lifestyle tools.</span></li>
-                                    <li className="flex items-start gap-4"><ArrowRight className="w-6 h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Reinvention, resilience, and quiet ambition over hustle culture.</span></li>
+                                <p className="font-sans font-bold uppercase tracking-widest text-base md:text-lg mb-4 md:mb-6 text-foreground/70">Content Pillars:</p>
+                                <ul className="space-y-4 md:space-y-6 font-sans text-lg md:text-2xl font-bold tracking-tight text-foreground">
+                                    <li className="flex items-start gap-3 md:gap-4"><ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Visa processes, living abroad solo, legal realties.</span></li>
+                                    <li className="flex items-start gap-3 md:gap-4"><ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Digital infrastructure and remote lifestyle tools.</span></li>
+                                    <li className="flex items-start gap-3 md:gap-4"><ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Reinvention, resilience, and quiet ambition over hustle culture.</span></li>
                                 </ul>
                             </div>
                         </div>
@@ -178,57 +178,57 @@ export default function Services() {
                 </div>
 
                 {/* Panel 4 (Engineer): Engineering & RevOps */}
-                <div className="w-screen h-full flex flex-col justify-center p-8 md:p-24 bg-background border-l border-border/50">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 bg-background border-l border-border/50">
+                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <span className="font-serif italic text-xl md:text-2xl text-muted-foreground mb-4 block">Path B</span>
-                            <h2 className="font-sans text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-8 break-words">
+                            <span className="font-serif italic text-lg md:text-2xl text-muted-foreground mb-2 md:mb-4 block">Path B</span>
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
                                 Revenue<br />Architecture
                             </h2>
-                            <p className="font-sans font-bold text-2xl md:text-3xl text-primary leading-snug mb-6">
+                            <p className="font-sans font-bold text-xl md:text-3xl text-primary leading-snug mb-4 md:mb-6">
                                 Scaled systems to support $12M ARR
                             </p>
-                            <p className="font-serif italic text-xl md:text-2xl text-muted-foreground leading-snug max-w-lg">
+                            <p className="font-serif italic text-lg md:text-2xl text-muted-foreground leading-snug max-w-lg">
                                 I don't just 'manage' processes. I engineer the infrastructure that allows companies to scale.
                             </p>
                         </div>
-                        <div className="border-l border-border/50 pl-8 md:pl-16">
-                            <ul className="space-y-8 font-sans text-xl md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
-                                <li className="flex items-center gap-6"><Database className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Systems Architecture</span></li>
-                                <li className="flex items-center gap-6"><Code className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Custom CRM-to-Delivery Automation</span></li>
-                                <li className="flex items-center gap-6"><TrendingUp className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Revenue Operations (RevOps)</span></li>
-                                <li className="flex items-center gap-6"><Presentation className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Product Discovery & Client Success</span></li>
-                                <li className="flex items-center gap-6"><Settings className="w-8 h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Low-code Applications (Coda, Zapier)</span></li>
+                        <div className="border-l border-border/50 pl-6 md:pl-16">
+                            <ul className="space-y-4 md:space-y-8 font-sans text-lg md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
+                                <li className="flex items-center gap-4 md:gap-6"><Database className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Systems Architecture</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><Code className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Custom CRM-to-Delivery Automation</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Revenue Operations (RevOps)</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><Presentation className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Product Discovery & Client Success</span></li>
+                                <li className="flex items-center gap-4 md:gap-6"><Settings className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Low-code Applications (Coda, Zapier)</span></li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 {/* Panel 5 (Engineer): Impact & Case Studies */}
-                <div className="w-screen h-full flex flex-col justify-center p-8 md:p-24 bg-background">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 bg-background">
+                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <h2 className="font-sans text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-8 break-words">
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
                                 Engineering<br />Impact
                             </h2>
-                            <p className="font-serif italic text-2xl md:text-3xl text-muted-foreground leading-snug">
+                            <p className="font-serif italic text-lg md:text-3xl text-muted-foreground leading-snug">
                                 Standing at the intersection of technical architecture and business strategy.
                             </p>
                         </div>
-                        <div className="border-l border-border/50 pl-8 md:pl-16">
-                            <p className="font-sans font-bold uppercase tracking-widest text-lg mb-8 text-foreground/70">Track Record:</p>
-                            <div className="space-y-8">
+                        <div className="border-l border-border/50 pl-6 md:pl-16">
+                            <p className="font-sans font-bold uppercase tracking-widest text-base md:text-lg mb-4 md:mb-8 text-foreground/70">Track Record:</p>
+                            <div className="space-y-6 md:space-y-8">
                                 <div>
-                                    <h4 className="font-sans text-2xl font-bold text-foreground">Appetiser Apps</h4>
-                                    <p className="font-serif italic text-muted-foreground text-lg">Engineered systems backbone scaling revenue from $300k to $1M+ monthly. Standardized delivery across internal departments.</p>
+                                    <h4 className="font-sans text-xl md:text-2xl font-bold text-foreground">Appetiser Apps</h4>
+                                    <p className="font-serif italic text-muted-foreground text-base md:text-lg">Engineered systems backbone scaling revenue from $300k to $1M+ monthly. Standardized delivery across internal departments.</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-sans text-2xl font-bold text-foreground">Ohmyhome (Nasdaq: OMH)</h4>
-                                    <p className="font-serif italic text-muted-foreground text-lg">Founding iOS Engineer. Designed and maintained scalable mobile architecture that handled high-volume property transactions.</p>
+                                    <h4 className="font-sans text-xl md:text-2xl font-bold text-foreground">Ohmyhome (Nasdaq: OMH)</h4>
+                                    <p className="font-serif italic text-muted-foreground text-base md:text-lg">Founding iOS Engineer. Designed and maintained scalable mobile architecture that handled high-volume property transactions.</p>
                                 </div>
                                 <div>
-                                    <h4 className="font-sans text-2xl font-bold text-foreground">Accenture</h4>
-                                    <p className="font-serif italic text-muted-foreground text-lg">SAP ABAP Engineer. Developed custom enterprise integration solutions for UK market clients.</p>
+                                    <h4 className="font-sans text-xl md:text-2xl font-bold text-foreground">Accenture</h4>
+                                    <p className="font-serif italic text-muted-foreground text-base md:text-lg">SAP ABAP Engineer. Developed custom enterprise integration solutions for UK market clients.</p>
                                 </div>
                             </div>
                         </div>
