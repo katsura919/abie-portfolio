@@ -4,6 +4,7 @@ import About from "@/components/sections/About";
 import Performance from "@/components/sections/Performance";
 import Services from "@/components/sections/Services";
 import Portfolio from "@/components/sections/Portfolio";
+import Pricing from "@/components/sections/Pricing";
 import DraggableSection from "@/components/sections/DraggableSection";
 import ExecutiveImpactSection from "@/components/sections/ProductsCarousel";
 
@@ -18,6 +19,7 @@ export default function Home() {
         <Performance />
         <Services />
         <Portfolio />
+        <Pricing />
         <ExecutiveImpactSection />
       </div>
     </div>
