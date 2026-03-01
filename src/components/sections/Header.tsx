@@ -21,7 +21,7 @@ export default function Header() {
 
                 {/* Logo - Always Left */}
                 <div className="flex items-center gap-3 tracking-widest text-lg md:text-base font-bold uppercase pointer-events-auto">
-                    <Image src="/logo.png" alt="Abie Maxey Logo" width={150} height={50} className="w-auto h-8 md:h-10 object-contain dark:invert" priority />
+                    <Image src="/logo.png" alt="Abie Maxey Logo" width={150} height={50} className="w-auto h-8 md:h-10 object-contain" priority />
                 </div>
 
                 {/* Right Actions */}

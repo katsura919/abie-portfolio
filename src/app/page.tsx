@@ -13,10 +13,10 @@ export default function Home() {
       <div className="w-full relative">
         <Hero />
         <About />
+                <DraggableSection />
         <Performance />
         <Services />
         <Portfolio />
-        <DraggableSection />
       </div>
     </div>
   );
