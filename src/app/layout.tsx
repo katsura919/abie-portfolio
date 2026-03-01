@@ -3,6 +3,7 @@ import { Geist_Mono, Instrument_Serif, Host_Grotesk } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { SmoothScrolling } from "@/components/SmoothScrolling";
+import { Loader } from "@/components/Loader";
 
 const hostGrotesk = Host_Grotesk({
   variable: "--font-host-grotesk",
@@ -42,6 +43,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Loader />
           <SmoothScrolling>
             {children}
           </SmoothScrolling>
