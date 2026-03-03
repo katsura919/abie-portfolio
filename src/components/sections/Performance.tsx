@@ -5,6 +5,7 @@ import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { NumberTicker } from '@/components/ui/number-ticker';
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -24,12 +25,12 @@ const tickerItems = [
 ];
 
 const stats = [
-    { value: '800K', label: 'IG Reach (30d)' },
-    { value: '1.7M', label: 'Threads Reach' },
-    { value: 'High', label: 'Saves & Shares' },
-    { value: 'Max', label: 'Repost Velocity' },
-    { value: 'Strong', label: 'TikTok Discovery' },
-    { value: 'Nomad', label: 'Storytelling Niche' },
+    { numeric: 800, suffix: 'K', label: 'IG Reach (30d)' },
+    { numeric: 1.7, suffix: 'M', label: 'Threads Reach', decimalPlaces: 1 },
+    { numeric: null, suffix: '', label: 'Saves & Shares', text: 'High' },
+    { numeric: null, suffix: '', label: 'Repost Velocity', text: 'Max' },
+    { numeric: null, suffix: '', label: 'TikTok Discovery', text: 'Strong' },
+    { numeric: null, suffix: '', label: 'Storytelling Niche', text: 'Nomad' },
 ];
 
 export default function Performance() {
@@ -114,7 +115,7 @@ export default function Performance() {
                     </div>
 
                     {/* Right: stat grid */}
-                    <div className="perform-stats-grid lg:col-span-8 xl:col-span-7 w-full lg:border-l border-border/80 lg:pl-4">
+                    <div className="perform-stats-grid lg:col-span-8 xl:col-span-7 w-full  lg:pl-4">
                         <div className="grid grid-cols-2 w-full">
                             {stats.map((stat, index) => (
                                 <div
@@ -125,7 +126,18 @@ export default function Performance() {
                                     group cursor-default hover:bg-secondary/30 transition-colors duration-300`}
                                 >
                                     <h3 className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-black tracking-tighter text-foreground mb-2 truncate sm:overflow-visible group-hover:text-primary transition-colors duration-300">
-                                        {stat.value}
+                                        {stat.numeric !== null ? (
+                                            <span className="inline-flex items-baseline">
+                                                <NumberTicker
+                                                    value={stat.numeric}
+                                                    decimalPlaces={stat.decimalPlaces ?? 0}
+                                                    className="font-sans text-4xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors duration-300"
+                                                />
+                                                <span>{stat.suffix}</span>
+                                            </span>
+                                        ) : (
+                                            stat.text
+                                        )}
                                     </h3>
                                     <p className="font-serif text-base lg:text-lg text-muted-foreground">
                                         {stat.label}
