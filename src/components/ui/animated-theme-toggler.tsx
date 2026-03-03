@@ -74,10 +74,10 @@ export const AnimatedThemeToggler = ({
     <button
       ref={buttonRef}
       onClick={toggleTheme}
-      className={cn(className, "cursor-pointer")}
+      className={cn("flex items-center justify-center cursor-pointer", className)}
       {...props}
     >
-      {isDark ? <Sun /> : <Moon />}
+      {isDark ? <Sun className="w-full h-full" /> : <Moon className="w-full h-full" />}
       <span className="sr-only">Toggle theme</span>
     </button>
   )

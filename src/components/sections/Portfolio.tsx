@@ -1,13 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, Instagram, Play } from 'lucide-react';
 import Script from 'next/script';
 import Image from 'next/image';
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const viralVideos = [
     {
@@ -76,34 +77,39 @@ const VideoCard = ({ video }: { video: typeof viralVideos[0] }) => {
 export default function Portfolio() {
     const sectionRef = useRef<HTMLElement>(null);
 
-    useEffect(() => {
-        if (!sectionRef.current) return;
-
-        // Fade in the entire grid container safely
+    useGSAP(() => {
+        gsap.fromTo('.portfolio-label',
+            { opacity: 0, y: 20 },
+            {
+                opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
+                scrollTrigger: { trigger: sectionRef.current, start: 'top 82%' }
+            }
+        );
+        gsap.fromTo('.portfolio-heading',
+            { y: 40, opacity: 0 },
+            {
+                y: 0, opacity: 1, duration: 1, ease: 'power3.out',
+                scrollTrigger: { trigger: sectionRef.current, start: 'top 80%' }
+            }
+        );
         gsap.fromTo('.portfolio-grid',
             { y: 30, opacity: 0 },
             {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: "power2.out",
-                scrollTrigger: {
-                    trigger: '.portfolio-grid',
-                    start: "top 85%",
-                }
+                y: 0, opacity: 1, duration: 1, ease: 'power2.out',
+                scrollTrigger: { trigger: '.portfolio-grid', start: 'top 85%' }
             }
         );
-    }, []);
+    }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} id="portfolio" className="relative w-full bg-background pt-24 md:pt-40 pb-12 md:pb-20 px-8 md:px-12 lg:px-20 xl:px-32 z-30">
+        <section ref={sectionRef} id="portfolio" className="relative w-full bg-background pt-24 md:pt-40 pb-12 md:pb-20 px-8 md:px-12 lg:px-20 xl:px-32 z-30 shadow-top rounded-t-3xl">
             <div className="max-w-[2200px] mx-auto w-full">
 
                 {/* Section Header */}
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 md:mb-24 gap-8">
                     <div className="max-w-3xl">
-                        <span className="font-serif italic text-xl md:text-2xl text-muted-foreground mb-4 block">04 — Proof of Work</span>
-                        <h2 className="font-sans text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-6">
+                        <p className="portfolio-label font-serif italic text-muted-foreground text-base md:text-lg mb-6">04 — Proof of Work</p>
+                        <h2 className="portfolio-heading font-sans text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-6">
                             Portfolio &<br />Viral Content
                         </h2>
                         <p className="font-serif italic text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-xl">
@@ -128,7 +134,7 @@ export default function Portfolio() {
 
                     {/* Engineering Column */}
                     <div>
-                        <h3 className="font-sans text-4xl md:text-5xl font-bold uppercase tracking-tight mb-12 flex items-center gap-4">
+                        <h3 className="font-sans text-4xl md:text-5xl font-black uppercase tracking-tighter mb-12 flex items-center gap-4">
                             Engineering Impact
                         </h3>
                         <div className="space-y-12">
@@ -154,8 +160,8 @@ export default function Portfolio() {
 
                     {/* Blog Column */}
                     <div>
-                        <h3 className="font-sans text-4xl md:text-5xl font-bold uppercase tracking-tight mb-12 flex items-center gap-4">
-                            Essays & Thinking
+                        <h3 className="font-sans text-4xl md:text-5xl font-black uppercase tracking-tighter mb-12 flex items-center gap-4">
+                            Essays &amp; Thinking
                         </h3>
                         <div className="space-y-8">
                             <a href="https://abiemaxey.com" target="_blank" rel="noopener noreferrer" className="block p-8 border border-border/50 rounded-2xl hover:border-primary/50 hover:bg-secondary/30 transition-all group">

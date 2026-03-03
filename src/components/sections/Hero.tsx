@@ -2,7 +2,9 @@ import { ArrowRight } from 'lucide-react';
 
 export default function Hero() {
     return (
-        <section className="w-full md:h-full bg-background">
+        <section 
+            id="hero"
+            className="w-full md:h-full bg-background">
             <div className="relative flex flex-col md:flex-row md:h-full min-h-[100dvh] max-w-[2200px] mx-auto w-full">
 
                 {/* Center Image - Flow normally on mobile, absolute on desktop */}

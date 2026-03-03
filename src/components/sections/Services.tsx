@@ -81,7 +81,7 @@ export default function Services() {
     };
 
     return (
-        <section ref={containerRef} className="relative w-full h-screen bg-background overflow-hidden z-20 shadow-top text-foreground">
+        <section ref={containerRef} id="services" className="relative w-full h-screen bg-background overflow-hidden z-20 shadow-top text-foreground">
 
             {/* Sticky Navigation Toggle (visible after initial decision) */}
             <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 flex items-center gap-2 p-1 rounded-full bg-secondary border border-border/50 shadow-xl ${activePath === 'decision' ? 'opacity-0 pointer-events-none translate-y-10' : 'opacity-100 translate-y-0'}`}>
@@ -107,21 +107,21 @@ export default function Services() {
                 {/* Panel 1 (The Hook): Content Developer vs Systems Engineer Split */}
                 <div className="w-screen h-full flex flex-col md:flex-row relative bg-background">
                     <div className="absolute top-12 left-1/2 -translate-x-1/2 z-10 text-center w-full px-4">
-                        <span className="font-serif italic text-xl md:text-2xl text-muted-foreground block mb-2">01 — The Dual Expertise</span>
-                        <h2 className="font-sans text-3xl md:text-5xl font-bold tracking-tighter uppercase text-foreground">Choose Your Path</h2>
+                        <span className="font-serif italic text-base md:text-lg text-muted-foreground block mb-3">03 — Services</span>
+                        <h2 className="font-sans text-3xl md:text-5xl font-black tracking-tighter uppercase text-foreground">Choose Your Path</h2>
                     </div>
 
                     {/* Left Split - Creator */}
                     <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-16 border-b md:border-b-0 md:border-r border-border/20 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('creator')}>
                         <Video className="w-12 h-12 md:w-24 md:h-24 text-primary mb-4 md:mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
-                        <h3 className="font-sans text-3xl md:text-6xl font-bold uppercase tracking-tight mb-2 md:mb-4 text-center">UGC &<br />Storytelling</h3>
+                        <h3 className="font-sans text-3xl md:text-6xl font-black uppercase tracking-tighter mb-2 md:mb-4 text-center">UGC &<br />Storytelling</h3>
                         <p className="font-serif italic text-muted-foreground text-center text-lg md:text-2xl">I need authentic content that converts.</p>
                     </div>
 
                     {/* Right Split - Engineer */}
                     <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-16 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('engineer')}>
                         <Settings className="w-12 h-12 md:w-24 md:h-24 text-primary mb-4 md:mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
-                        <h3 className="font-sans text-3xl md:text-6xl font-bold uppercase tracking-tight mb-2 md:mb-4 text-center">Systems &<br />RevOps</h3>
+                        <h3 className="font-sans text-3xl md:text-6xl font-black uppercase tracking-tighter mb-2 md:mb-4 text-center">Systems &<br />RevOps</h3>
                         <p className="font-serif italic text-muted-foreground text-center text-lg md:text-2xl">I need scalable revenue architecture.</p>
                     </div>
                 </div>
@@ -130,8 +130,8 @@ export default function Services() {
                 <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 relative overflow-hidden bg-secondary border-l border-border/50">
                     <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <span className="font-serif italic text-lg md:text-2xl text-muted-foreground mb-2 md:mb-4 block">Path A</span>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
+                            <span className="font-serif italic text-base md:text-lg text-muted-foreground mb-2 md:mb-4 block">Path A</span>
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
                                 Content<br />Creation
                             </h2>
                             <p className="font-sans font-bold text-xl md:text-3xl text-primary leading-snug mb-4 md:mb-6">
@@ -157,7 +157,7 @@ export default function Services() {
                 <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 relative overflow-hidden bg-secondary">
                     <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
                                 Nomadic<br />Narratives
                             </h2>
                             <p className="font-serif italic text-lg md:text-3xl text-muted-foreground leading-snug">
@@ -181,8 +181,8 @@ export default function Services() {
                 <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 bg-background border-l border-border/50">
                     <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <span className="font-serif italic text-lg md:text-2xl text-muted-foreground mb-2 md:mb-4 block">Path B</span>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
+                            <span className="font-serif italic text-base md:text-lg text-muted-foreground mb-2 md:mb-4 block">Path B</span>
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
                                 Revenue<br />Architecture
                             </h2>
                             <p className="font-sans font-bold text-xl md:text-3xl text-primary leading-snug mb-4 md:mb-6">
@@ -208,7 +208,7 @@ export default function Services() {
                 <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 bg-background">
                     <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
                         <div>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold tracking-tighter uppercase leading-[0.9] text-foreground mb-4 md:mb-8 break-words">
+                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
                                 Engineering<br />Impact
                             </h2>
                             <p className="font-serif italic text-lg md:text-3xl text-muted-foreground leading-snug">
