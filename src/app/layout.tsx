@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider"
 import { SmoothScrolling } from "@/components/SmoothScrolling";
 import { Loader } from "@/components/Loader";
+import { SmoothCursor } from "@/components/ui/smooth-cursor";
 
 const hostGrotesk = Host_Grotesk({
   variable: "--font-host-grotesk",
@@ -45,6 +46,7 @@ export default function RootLayout({
         >
           <Loader />
           <SmoothScrolling>
+            <SmoothCursor />
             {children}
           </SmoothScrolling>
         </ThemeProvider>

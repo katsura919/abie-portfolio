@@ -11,7 +11,7 @@ export default function Hero() {
                 <div className="md:absolute md:top-0 md:left-[55%] md:-translate-x-1/2 w-full px-8 sm:px-0 sm:w-[80%] md:w-[40vw] lg:w-[32vw] max-w-[600px] aspect-[4/5] md:aspect-auto md:h-[85vh] z-0 order-1 md:order-none md:mt-0 mx-auto">
                     <div className="w-full h-full bg-muted rounded-b-[250px] md:rounded-b-[500px] overflow-hidden shadow-sm">
                         <img
-                            src="https://res.cloudinary.com/drpxke63n/image/upload/v1772543206/hero-image_vmzqzi.jpg"
+                            src="https://res.cloudinary.com/drpxke63n/image/upload/v1772558756/hero-image_vmzqzi_yqdait.jpg"
                             alt="Abie Maxey"
                             className="w-full h-full object-cover object-center scale-105"
                             referrerPolicy="no-referrer"
@@ -37,7 +37,7 @@ export default function Hero() {
 
                         <div className="mt-8 md:mt-10">
                             <a href="mailto:hello@abiemaxey.com" className="inline-flex items-center gap-4 bg-primary text-primary-foreground rounded-full pl-6 pr-1.5 py-1.5 hover:bg-primary/90 transition-all hover:scale-105 group">
-                                <span className="font-sans uppercase tracking-widest font-bold text-xs sm:text-sm">Contact Me</span>
+                                <span className="font-sans uppercase tracking-widest font-bold text-xs sm:text-sm">Work with Me </span>
                                 <div className="w-8 h-8 bg-background text-foreground rounded-full flex items-center justify-center transition-transform">
                                     <ArrowRight size={16} strokeWidth={2.5} className="group-hover:translate-x-1 transition-transform" />
                                 </div>

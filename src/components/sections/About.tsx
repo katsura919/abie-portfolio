@@ -137,7 +137,7 @@ export default function About() {
                     <div className="lg:col-span-5 relative w-full pb-10">
                         <div className="about-img-reveal lg:sticky lg:top-32 w-full aspect-[4/5] sm:aspect-[3/4] lg:h-[80vh] max-h-[820px] ml-auto rounded-2xl md:rounded-[32px] overflow-hidden bg-muted">
                             <img
-                                src="https://res.cloudinary.com/drpxke63n/image/upload/v1772543110/about_zkppww.jpg"
+                                src="https://res.cloudinary.com/drpxke63n/image/upload/v1772558718/about_1_aa14bj.jpg"
                                 alt="Abie Maxey"
                                 className="w-full h-full object-cover object-center scale-105 transition-transform duration-700 hover:scale-100"
                                 referrerPolicy="no-referrer"

@@ -1,241 +1,347 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollToPlugin } from "gsap/ScrollToPlugin";
-import { Video, Mic, Clapperboard, PenTool, Smartphone, ArrowRight, Settings, Code, Database, TrendingUp, Presentation } from "lucide-react";
+import {
+    Video, Mic, Clapperboard, PenTool, Smartphone,
+    Settings, Code, Database, TrendingUp, Presentation,
+} from "lucide-react";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollToPlugin);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-export default function Services() {
-    const containerRef = useRef<HTMLElement>(null);
-    const scrollWrapperRef = useRef<HTMLDivElement>(null);
-    const [activePath, setActivePath] = useState<'decision' | 'creator' | 'engineer'>('decision');
-    const [stInstance, setStInstance] = useState<ScrollTrigger | null>(null);
+const creatorServices = [
+    {
+        icon: Video,
+        label: "UGC-style vertical videos",
+        desc: "Authentic, scroll-stopping short-form content that feels native to the platform and drives real engagement.",
+    },
+    {
+        icon: Mic,
+        label: "Voiceover storytelling",
+        desc: "Narrative-driven content that builds emotional connection and holds attention from the first second.",
+    },
+    {
+        icon: Clapperboard,
+        label: "Aesthetic B-roll + talking head",
+        desc: "Cinematic visuals paired with direct-to-camera delivery — polished but personal.",
+    },
+    {
+        icon: PenTool,
+        label: "Scripted & semi-scripted content",
+        desc: "Every word earns its place. Scripts that convert without sounding like a script.",
+    },
+    {
+        icon: Smartphone,
+        label: "Native-feeling conversion ads",
+        desc: "Ads that blend into feeds, build trust, and get people to take action without feeling sold to.",
+    },
+];
+
+const engineerServices = [
+    {
+        icon: Database,
+        label: "Systems Architecture",
+        desc: "Designing the operational backbone that lets companies scale without breaking — from CRM structure to delivery workflows.",
+    },
+    {
+        icon: Code,
+        label: "Custom CRM-to-Delivery Automation",
+        desc: "End-to-end automation pipelines that eliminate manual handoffs and keep client projects moving.",
+    },
+    {
+        icon: TrendingUp,
+        label: "Revenue Operations (RevOps)",
+        desc: "Aligning sales, marketing, and delivery into a single revenue engine with measurable output at every stage.",
+    },
+    {
+        icon: Presentation,
+        label: "Product Discovery & Client Success",
+        desc: "Structuring onboarding and discovery processes that reduce churn and accelerate time-to-value.",
+    },
+    {
+        icon: Settings,
+        label: "Low-code Applications (Coda, Zapier)",
+        desc: "Custom no-code/low-code tooling that gives teams superpowers without bloated software budgets.",
+    },
+];
+
+/* ─────────────────────────────────────────────
+   Desktop: Sticky left + scroll-up right
+───────────────────────────────────────────── */
+function DesktopServiceSection({
+    sectionId,
+    eyebrow,
+    heading,
+    stat,
+    tagline,
+    services,
+    bg,
+}: {
+    sectionId: string;
+    eyebrow: string;
+    heading: React.ReactNode;
+    stat: string;
+    tagline: string;
+    services: { icon: React.ElementType; label: string; desc: string }[];
+    bg: string;
+}) {
+    const wrapRef = useRef<HTMLDivElement>(null);
+    const leftRef = useRef<HTMLDivElement>(null);
+    const rightRef = useRef<HTMLDivElement>(null);
+    const innerRef = useRef<HTMLDivElement>(null);
 
     useGSAP(() => {
-        if (!containerRef.current || !scrollWrapperRef.current) return;
+        if (!wrapRef.current || !rightRef.current || !innerRef.current) return;
 
-        // Total width of wrapper is 500vw (5 sections). Window width is 100vw.
-        // Scroll amount is 400vw equivalent vertically.
-        function getScrollAmount() {
-            return -(scrollWrapperRef.current!.scrollWidth - window.innerWidth);
-        }
-
-        const tween = gsap.to(scrollWrapperRef.current, {
-            x: getScrollAmount,
-            ease: "none"
-        });
-
-        const st = ScrollTrigger.create({
-            trigger: containerRef.current,
-            start: "top top",
-            end: () => `+=${Math.abs(getScrollAmount())}`,
-            pin: true,
-            animation: tween,
-            scrub: 1,
-            invalidateOnRefresh: true,
-            onUpdate: (self) => {
-                const progress = self.progress;
-                // Progress is 0 to 1 over the 4 scrolls.
-                // 0 - 0.15 = decision
-                // 0.15 - 0.6 = creator (panels 2, 3)
-                // 0.6 - 1.0 = engineer (panels 4, 5)
-                if (progress < 0.15) {
-                    setActivePath('decision');
-                } else if (progress < 0.6) {
-                    setActivePath('creator');
-                } else {
-                    setActivePath('engineer');
-                }
+        // Left column: staggered reveal on scroll entry
+        gsap.fromTo(
+            leftRef.current!.querySelectorAll('.left-reveal'),
+            { y: 50, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: wrapRef.current,
+                    start: 'top 85%',
+                },
             }
+        );
+
+        // Right column: physical scroll-up through clip
+        const containerH = rightRef.current.clientHeight;
+        const totalY = containerH * (services.length - 1);
+        const PX_PER_ITEM = 700;
+        const totalPx = (services.length - 1) * PX_PER_ITEM;
+
+        gsap.to(innerRef.current, {
+            y: -totalY,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: wrapRef.current,
+                start: 'top top',
+                end: `+=${totalPx}`,
+                pin: true,
+                scrub: 1.5,
+                invalidateOnRefresh: true,
+            },
         });
 
-        setStInstance(st);
-
-        return () => {
-            st.kill();
-        };
-
-    }, { scope: containerRef });
-
-    const jumpTo = (path: 'creator' | 'engineer') => {
-        if (!stInstance) return;
-        const start = stInstance.start;
-        const end = stInstance.end;
-
-        // Progress targets:
-        // Creator = 1/4 of the way through the total scroll (Panel 2)
-        // Engineer = 3/4 of the way through the total scroll (Panel 4)
-        const targetProgress = path === 'creator' ? 0.25 : 0.75;
-
-        const targetY = start + (end - start) * targetProgress;
-
-        gsap.to(window, {
-            scrollTo: targetY,
-            duration: 1.5,
-            ease: "power3.inOut"
-        });
-    };
+    }, { scope: wrapRef });
 
     return (
-        <section ref={containerRef} id="services" className="relative w-full h-screen bg-background overflow-hidden z-20 shadow-top text-foreground">
+        <div
+            id={sectionId}
+            ref={wrapRef}
+            className={`relative w-full h-screen overflow-hidden ${bg}`}
+        >
+            <div className="max-w-7xl mx-auto h-full flex">
+                {/* Left: stays in place while right scrolls */}
+                <div
+                    ref={leftRef}
+                    className="w-5/12 flex flex-col justify-center px-8 xl:px-16 py-16 flex-shrink-0"
+                >
+                    <span className="left-reveal font-serif italic text-sm text-muted-foreground mb-4 block">
+                        {eyebrow}
+                    </span>
+                    <h2 className="left-reveal font-sans text-5xl xl:text-7xl font-black tracking-tighter uppercase leading-[0.85] text-foreground mb-6">
+                        {heading}
+                    </h2>
+                    <p className="left-reveal font-sans font-bold text-primary text-lg xl:text-xl mb-4">
+                        {stat}
+                    </p>
+                    <p className="left-reveal font-serif italic text-muted-foreground text-base xl:text-lg leading-relaxed max-w-sm">
+                        {tagline}
+                    </p>
+                </div>
 
-            {/* Sticky Navigation Toggle (visible after initial decision) */}
-            <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 flex items-center gap-2 p-1 rounded-full bg-secondary border border-border/50 shadow-xl ${activePath === 'decision' ? 'opacity-0 pointer-events-none translate-y-10' : 'opacity-100 translate-y-0'}`}>
-                <button
-                    onClick={() => jumpTo('creator')}
-                    className={`px-6 py-3 rounded-full font-bold text-sm md:text-base flex items-center gap-2 transition-colors ${activePath === 'creator' ? 'bg-primary text-primary-foreground' : 'text-foreground/70 hover:text-foreground'}`}
-                >
-                    <Video className="w-5 h-5" />
-                    Content Creator
-                </button>
-                <button
-                    onClick={() => jumpTo('engineer')}
-                    className={`px-6 py-3 rounded-full font-bold text-sm md:text-base flex items-center gap-2 transition-colors ${activePath === 'engineer' ? 'bg-primary text-primary-foreground' : 'text-foreground/70 hover:text-foreground'}`}
-                >
-                    <Settings className="w-5 h-5" />
-                    Systems Engineer
-                </button>
+                {/* Right: clipping window */}
+                <div ref={rightRef} className="relative flex-1 overflow-hidden">
+                    {/* Inner column — GSAP scrolls this up */}
+                    <div ref={innerRef} className="flex flex-col">
+                        {services.map(({ icon: Icon, label, desc }) => (
+                            <div
+                                key={label}
+                                className="flex items-center px-8 xl:px-16"
+                                style={{ height: '100vh' }}
+                            >
+                                <div className="flex items-start gap-6 max-w-xl">
+                                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mt-1">
+                                        <Icon className="w-7 h-7 text-primary" strokeWidth={1.5} />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-sans text-2xl xl:text-3xl font-black tracking-tighter uppercase text-foreground mb-3">
+                                            {label}
+                                        </h4>
+                                        <p className="font-serif italic text-muted-foreground text-base xl:text-lg leading-relaxed">
+                                            {desc}
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
             </div>
+        </div>
+    );
+}
 
-            {/* Horizontal Track */}
-            <div ref={scrollWrapperRef} className="flex h-full w-[500vw]">
+/* ─────────────────────────────────────────────
+   Mobile: Simple stacked card list
+───────────────────────────────────────────── */
+function MobileServiceSection({
+    sectionId,
+    eyebrow,
+    heading,
+    stat,
+    tagline,
+    services,
+    bg,
+}: {
+    sectionId: string;
+    eyebrow: string;
+    heading: React.ReactNode;
+    stat: string;
+    tagline: string;
+    services: { icon: React.ElementType; label: string; desc: string }[];
+    bg: string;
+}) {
+    const sectionRef = useRef<HTMLDivElement>(null);
 
-                {/* Panel 1 (The Hook): Content Developer vs Systems Engineer Split */}
-                <div className="w-screen h-full flex flex-col md:flex-row relative bg-background">
-                    <div className="absolute top-12 left-1/2 -translate-x-1/2 z-10 text-center w-full px-4">
-                        <span className="font-serif italic text-base md:text-lg text-muted-foreground block mb-3">03 — Services</span>
-                        <h2 className="font-sans text-3xl md:text-5xl font-black tracking-tighter uppercase text-foreground">Choose Your Path</h2>
-                    </div>
+    useGSAP(() => {
+        if (!sectionRef.current) return;
 
-                    {/* Left Split - Creator */}
-                    <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-16 border-b md:border-b-0 md:border-r border-border/20 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('creator')}>
-                        <Video className="w-12 h-12 md:w-24 md:h-24 text-primary mb-4 md:mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
-                        <h3 className="font-sans text-3xl md:text-6xl font-black uppercase tracking-tighter mb-2 md:mb-4 text-center">UGC &<br />Storytelling</h3>
-                        <p className="font-serif italic text-muted-foreground text-center text-lg md:text-2xl">I need authentic content that converts.</p>
-                    </div>
+        // Header stagger
+        gsap.fromTo(
+            sectionRef.current.querySelectorAll('.mob-reveal'),
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 85%',
+                },
+            }
+        );
 
-                    {/* Right Split - Engineer */}
-                    <div className="w-full h-1/2 md:h-full md:w-1/2 flex flex-col justify-center items-center p-6 md:p-16 group hover:bg-secondary/50 transition-colors cursor-pointer" onClick={() => jumpTo('engineer')}>
-                        <Settings className="w-12 h-12 md:w-24 md:h-24 text-primary mb-4 md:mb-8 opacity-80 group-hover:scale-110 transition-transform duration-500" strokeWidth={1} />
-                        <h3 className="font-sans text-3xl md:text-6xl font-black uppercase tracking-tighter mb-2 md:mb-4 text-center">Systems &<br />RevOps</h3>
-                        <p className="font-serif italic text-muted-foreground text-center text-lg md:text-2xl">I need scalable revenue architecture.</p>
-                    </div>
+        // Service cards stagger
+        gsap.fromTo(
+            sectionRef.current.querySelectorAll('.mob-card'),
+            { y: 40, opacity: 0 },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: 'power3.out',
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top 70%',
+                },
+            }
+        );
+    }, { scope: sectionRef });
+
+    return (
+        <div
+            id={`${sectionId}-mobile`}
+            ref={sectionRef}
+            className={`w-full px-5 pt-16 pb-12 ${bg}`}
+        >
+            <div className="max-w-lg mx-auto">
+                {/* Header block */}
+                <div className="mb-10">
+                    <span className="mob-reveal font-serif italic text-sm text-muted-foreground mb-3 block">
+                        {eyebrow}
+                    </span>
+                    <h2 className="mob-reveal font-sans text-4xl font-black tracking-tighter uppercase leading-[0.85] text-foreground mb-4">
+                        {heading}
+                    </h2>
+                    <p className="mob-reveal font-sans font-bold text-primary text-base mb-3">
+                        {stat}
+                    </p>
+                    <p className="mob-reveal font-serif italic text-muted-foreground text-sm leading-relaxed">
+                        {tagline}
+                    </p>
                 </div>
 
-                {/* Panel 2 (Creator): What I Create */}
-                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 relative overflow-hidden bg-secondary border-l border-border/50">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
-                        <div>
-                            <span className="font-serif italic text-base md:text-lg text-muted-foreground mb-2 md:mb-4 block">Path A</span>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
-                                Content<br />Creation
-                            </h2>
-                            <p className="font-sans font-bold text-xl md:text-3xl text-primary leading-snug mb-4 md:mb-6">
-                                1.7M+ Threads Reach | 800k+ IG Reach
-                            </p>
-                            <p className="font-serif italic text-lg md:text-2xl text-muted-foreground leading-snug max-w-lg">
-                                In a sea of over-polished, fake-feeling ads, my content builds credibility through aesthetic realism.
-                            </p>
-                        </div>
-                        <div className="border-l border-border/50 pl-6 md:pl-16">
-                            <ul className="space-y-4 md:space-y-8 font-sans text-lg md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
-                                <li className="flex items-center gap-4 md:gap-6"><Video className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>UGC-style vertical videos</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><Mic className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Voiceover storytelling</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><Clapperboard className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Aesthetic B-roll + talking head</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><PenTool className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Scripted & semi-scripted content</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><Smartphone className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Native-feeling conversion ads</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Panel 3 (Creator): Content Pillars & Brands */}
-                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 relative overflow-hidden bg-secondary">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
-                        <div>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
-                                Nomadic<br />Narratives
-                            </h2>
-                            <p className="font-serif italic text-lg md:text-3xl text-muted-foreground leading-snug">
-                                Documenting the actual reality of rebuilding lives across borders.
-                            </p>
-                        </div>
-                        <div className="flex flex-col gap-8 md:gap-12 justify-center h-full border-l border-border/50 pl-6 md:pl-16">
+                {/* Service list */}
+                <ul className="space-y-5">
+                    {services.map(({ icon: Icon, label, desc }) => (
+                        <li
+                            key={label}
+                            className="mob-card flex items-start gap-4 p-5 rounded-2xl bg-background/50 border border-border/30"
+                        >
+                            <div className="flex-shrink-0 w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mt-0.5">
+                                <Icon className="w-5 h-5 text-primary" strokeWidth={1.8} />
+                            </div>
                             <div>
-                                <p className="font-sans font-bold uppercase tracking-widest text-base md:text-lg mb-4 md:mb-6 text-foreground/70">Content Pillars:</p>
-                                <ul className="space-y-4 md:space-y-6 font-sans text-lg md:text-2xl font-bold tracking-tight text-foreground">
-                                    <li className="flex items-start gap-3 md:gap-4"><ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Visa processes, living abroad solo, legal realties.</span></li>
-                                    <li className="flex items-start gap-3 md:gap-4"><ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Digital infrastructure and remote lifestyle tools.</span></li>
-                                    <li className="flex items-start gap-3 md:gap-4"><ArrowRight className="w-5 h-5 md:w-6 md:h-6 text-primary flex-shrink-0 mt-1" strokeWidth={2} /> <span>Reinvention, resilience, and quiet ambition over hustle culture.</span></li>
-                                </ul>
+                                <h4 className="font-sans text-base font-bold tracking-tight text-foreground mb-1">
+                                    {label}
+                                </h4>
+                                <p className="font-serif italic text-muted-foreground text-sm leading-relaxed">
+                                    {desc}
+                                </p>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Panel 4 (Engineer): Engineering & RevOps */}
-                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 bg-background border-l border-border/50">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
-                        <div>
-                            <span className="font-serif italic text-base md:text-lg text-muted-foreground mb-2 md:mb-4 block">Path B</span>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
-                                Revenue<br />Architecture
-                            </h2>
-                            <p className="font-sans font-bold text-xl md:text-3xl text-primary leading-snug mb-4 md:mb-6">
-                                Scaled systems to support $12M ARR
-                            </p>
-                            <p className="font-serif italic text-lg md:text-2xl text-muted-foreground leading-snug max-w-lg">
-                                I don't just 'manage' processes. I engineer the infrastructure that allows companies to scale.
-                            </p>
-                        </div>
-                        <div className="border-l border-border/50 pl-6 md:pl-16">
-                            <ul className="space-y-4 md:space-y-8 font-sans text-lg md:text-2xl lg:text-3xl font-bold tracking-tight text-foreground">
-                                <li className="flex items-center gap-4 md:gap-6"><Database className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Systems Architecture</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><Code className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Custom CRM-to-Delivery Automation</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><TrendingUp className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Revenue Operations (RevOps)</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><Presentation className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Product Discovery & Client Success</span></li>
-                                <li className="flex items-center gap-4 md:gap-6"><Settings className="w-6 h-6 md:w-8 md:h-8 text-primary flex-shrink-0" strokeWidth={2} /> <span>Low-code Applications (Coda, Zapier)</span></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Panel 5 (Engineer): Impact & Case Studies */}
-                <div className="w-screen h-full flex flex-col justify-center p-6 md:p-24 bg-background">
-                    <div className="max-w-6xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 items-center">
-                        <div>
-                            <h2 className="font-sans text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tighter uppercase leading-[0.88] text-foreground mb-4 md:mb-8 break-words">
-                                Engineering<br />Impact
-                            </h2>
-                            <p className="font-serif italic text-lg md:text-3xl text-muted-foreground leading-snug">
-                                Standing at the intersection of technical architecture and business strategy.
-                            </p>
-                        </div>
-                        <div className="border-l border-border/50 pl-6 md:pl-16">
-                            <p className="font-sans font-bold uppercase tracking-widest text-base md:text-lg mb-4 md:mb-8 text-foreground/70">Track Record:</p>
-                            <div className="space-y-6 md:space-y-8">
-                                <div>
-                                    <h4 className="font-sans text-xl md:text-2xl font-bold text-foreground">Appetiser Apps</h4>
-                                    <p className="font-serif italic text-muted-foreground text-base md:text-lg">Engineered systems backbone scaling revenue from $300k to $1M+ monthly. Standardized delivery across internal departments.</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-sans text-xl md:text-2xl font-bold text-foreground">Ohmyhome (Nasdaq: OMH)</h4>
-                                    <p className="font-serif italic text-muted-foreground text-base md:text-lg">Founding iOS Engineer. Designed and maintained scalable mobile architecture that handled high-volume property transactions.</p>
-                                </div>
-                                <div>
-                                    <h4 className="font-sans text-xl md:text-2xl font-bold text-foreground">Accenture</h4>
-                                    <p className="font-serif italic text-muted-foreground text-base md:text-lg">SAP ABAP Engineer. Developed custom enterprise integration solutions for UK market clients.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                        </li>
+                    ))}
+                </ul>
             </div>
+        </div>
+    );
+}
+
+/* ─────────────────────────────────────────────
+   Exported section — renders the right version
+───────────────────────────────────────────── */
+const sections = [
+    {
+        sectionId: "services-creator",
+        eyebrow: "03 — Content Creation",
+        heading: <>UGC &amp;<br />Storytelling</>,
+        stat: "1.7M+ Threads Reach · 800k+ IG Reach",
+        tagline: "In a sea of over-polished, fake-feeling ads, my content builds credibility through aesthetic realism.",
+        services: creatorServices,
+        bg: "bg-secondary",
+    },
+    {
+        sectionId: "services-engineer",
+        eyebrow: "03 — Systems Engineering",
+        heading: <>Revenue<br />Architecture</>,
+        stat: "Scaled systems to support $12M ARR",
+        tagline: "I don't just 'manage' processes. I engineer the infrastructure that allows companies to scale.",
+        services: engineerServices,
+        bg: "bg-background",
+    },
+];
+
+export default function Services() {
+    return (
+        <section id="services" className="relative w-full bg-background text-foreground z-20">
+
+            {/* ── Desktop layout: hidden on mobile ── */}
+            <div className="hidden lg:block">
+                {sections.map((s) => (
+                    <DesktopServiceSection key={s.sectionId} {...s} />
+                ))}
+            </div>
+
+            {/* ── Mobile layout: hidden on desktop ── */}
+            <div className="lg:hidden">
+                {sections.map((s) => (
+                    <MobileServiceSection key={s.sectionId} {...s} />
+                ))}
+            </div>
+
         </section>
     );
 }

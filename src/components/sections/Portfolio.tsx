@@ -102,7 +102,7 @@ export default function Portfolio() {
     }, { scope: sectionRef });
 
     return (
-        <section ref={sectionRef} id="portfolio" className="relative w-full bg-background pt-24 md:pt-40 pb-12 md:pb-20 px-8 md:px-12 lg:px-20 xl:px-32 z-30 shadow-top rounded-t-3xl">
+        <section ref={sectionRef} id="portfolio" className="relative w-full bg-background pt-24 md:pt-40 pb-12 md:pb-20 px-8 md:px-12 lg:px-20 xl:px-32 z-30">
             <div className="max-w-[2200px] mx-auto w-full">
 
                 {/* Section Header */}
