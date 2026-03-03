@@ -43,24 +43,10 @@ export default function About() {
             }
         );
 
-        // Dynamic Pinning
-        ScrollTrigger.create({
-            trigger: container.current,
-            start: () => {
-                if (container.current) {
-                    return window.innerHeight < container.current.offsetHeight ? "bottom bottom" : "top top";
-                }
-                return "top top";
-            },
-            pin: true,
-            pinSpacing: false,
-            invalidateOnRefresh: true,
-        });
-
     }, { scope: container });
 
     return (
-        <section ref={container} id="about" className="relative w-full py-24 md:py-32 xl:py-40 bg-background overflow-hidden z-10 shadow-top rounded-t-3xl min-h-screen">
+        <section ref={container} id="about" className="relative w-full py-24 md:py-32 xl:py-20 bg-background overflow-hidden z-10 shadow-top rounded-t-3xl min-h-screen">
             <div className="max-w-[2200px] mx-auto w-full px-8 md:px-16 lg:px-24 xl:px-32">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
 
@@ -121,7 +107,7 @@ export default function About() {
                         <div className="about-img-reveal lg:sticky lg:top-32 w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[4/5] lg:h-[80vh] max-h-[850px] ml-auto">
                             <div className="w-full h-full rounded-2xl md:rounded-[32px] overflow-hidden bg-muted">
                                 <img
-                                    src="/assets/about.jpg"
+                                    src="https://res.cloudinary.com/drpxke63n/image/upload/v1772543110/about_zkppww.jpg"
                                     alt="Abie Maxey"
                                     className="w-full h-full object-cover object-center scale-105 transition-transform duration-700 hover:scale-100"
                                     referrerPolicy="no-referrer"

@@ -1,6 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import {
   motion,
   useMotionValue,
@@ -22,6 +22,7 @@ export const DraggableCardBody = ({
   const mouseY = useMotionValue(0);
   const cardRef = useRef<HTMLDivElement>(null);
   const controls = useAnimationControls();
+  const [isMobile, setIsMobile] = useState(false);
   const [constraints, setConstraints] = useState({
     top: 0,
     left: 0,
@@ -59,6 +60,12 @@ export const DraggableCardBody = ({
   );
 
   useEffect(() => {
+    // Detect touch/mobile device — disable heavy 3D effects
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 767px)").matches || ("ontouchstart" in window));
+    };
+    checkMobile();
+
     // Update constraints when component mounts or window resizes
     const updateConstraints = () => {
       if (typeof window !== "undefined") {
@@ -83,6 +90,7 @@ export const DraggableCardBody = ({
   }, []);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isMobile) return; // Skip tilt on mobile
     const { clientX, clientY } = e;
     const { width, height, left, top } =
       cardRef.current?.getBoundingClientRect() ?? {
@@ -128,7 +136,7 @@ export const DraggableCardBody = ({
 
         const velocityMagnitude = Math.sqrt(
           currentVelocityX * currentVelocityX +
-            currentVelocityY * currentVelocityY,
+          currentVelocityY * currentVelocityY,
         );
         const bounce = Math.min(0.8, velocityMagnitude / 1000);
 
@@ -153,27 +161,30 @@ export const DraggableCardBody = ({
         });
       }}
       style={{
-        rotateX,
-        rotateY,
+        rotateX: isMobile ? 0 : rotateX,
+        rotateY: isMobile ? 0 : rotateY,
         opacity,
-        willChange: "transform",
+        willChange: isMobile ? "auto" : "transform",
       }}
       animate={controls}
-      whileHover={{ scale: 1.02 }}
+      whileHover={isMobile ? {} : { scale: 1.02 }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       className={cn(
         "relative min-h-96 w-80 overflow-hidden rounded-md bg-neutral-100 p-6 shadow-2xl transform-3d dark:bg-neutral-900",
+        isMobile && "!min-h-0 !h-auto !w-[150px] p-2 shadow-md",
         className,
       )}
     >
       {children}
-      <motion.div
-        style={{
-          opacity: glareOpacity,
-        }}
-        className="pointer-events-none absolute inset-0 bg-white select-none"
-      />
+      {!isMobile && (
+        <motion.div
+          style={{
+            opacity: glareOpacity,
+          }}
+          className="pointer-events-none absolute inset-0 bg-white select-none"
+        />
+      )}
     </motion.div>
   );
 };
